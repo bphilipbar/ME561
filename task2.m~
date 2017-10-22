@@ -1,0 +1,70 @@
+%% 
+clear all, close all
+
+% load data
+outdata = importdata('/Users/bradphilipbar/Documents/ME_561/Task2/Task2_Code/OUTPUT.dat');
+outdata2 = importdata('/Users/bradphilipbar/Documents/ME_561/Task2/Task2_Code/OUTPUT2.dat');
+outdata_1 = importdata('/Users/bradphilipbar/Documents/ME_561/Task2/Task2_Code/OUTPUT_1.dat');
+outdata2_1 = importdata('/Users/bradphilipbar/Documents/ME_561/Task2/Task2_Code/OUTPUT2_1.dat');
+outdata_2 = importdata('/Users/bradphilipbar/Documents/ME_561/Task2/Task2_Code/OUTPUT_2.dat');
+outdata2_2 = importdata('/Users/bradphilipbar/Documents/ME_561/Task2/Task2_Code/OUTPUT2_2.dat');
+outdata_5 = importdata('/Users/bradphilipbar/Documents/ME_561/Task2/Task2_Code/OUTPUT_5.dat');
+outdata2_5 = importdata('/Users/bradphilipbar/Documents/ME_561/Task2/Task2_Code/OUTPUT2_5.dat');
+outdata_10 = importdata('/Users/bradphilipbar/Documents/ME_561/Task2/Task2_Code/OUTPUT_10.dat');
+outdata2_10 = importdata('/Users/bradphilipbar/Documents/ME_561/Task2/Task2_Code/OUTPUT2_10.dat');
+
+%part 7
+outdata_REU2K = importdata('/Users/bradphilipbar/Documents/ME_561/Task2/Task2_Code/OUTPUT__p7_REU2K.dat');
+outdata2_REU2K = importdata('/Users/bradphilipbar/Documents/ME_561/Task2/Task2_Code/OUTPUT2_p7_REU2K.dat');
+outdata_REU20K = importdata('/Users/bradphilipbar/Documents/ME_561/Task2/Task2_Code/OUTPUT_p7_REU20K.dat');
+outdata2_REU20K = importdata('/Users/bradphilipbar/Documents/ME_561/Task2/Task2_Code/OUTPUT2_p7_REU20K.dat');
+
+Res = importdata('/Users/bradphilipbar/Documents/ME_561/Task2/Task2_Code/RES.dat');
+Res_1 = importdata('/Users/bradphilipbar/Documents/ME_561/Task2/Task2_Code/RES_1.dat');
+Res_2 = importdata('/Users/bradphilipbar/Documents/ME_561/Task2/Task2_Code/RES_2.dat');
+Res_5 = importdata('/Users/bradphilipbar/Documents/ME_561/Task2/Task2_Code/RES_5.dat');
+Res_10 = importdata('/Users/bradphilipbar/Documents/ME_561/Task2/Task2_Code/RES_10.dat');
+
+%p7
+Res_REU2K = importdata('/Users/bradphilipbar/Documents/ME_561/Task2/Task2_Code/RES_p7_REU2K.dat');
+Res_REU20K = importdata('/Users/bradphilipbar/Documents/ME_561/Task2/Task2_Code/RES_p7_REU20K.dat');
+
+
+%% plots for part 1
+plot(outdata2(:,1),outdata2(:,2),'ko',outdata(:,1),outdata(:,2),'k.','LineWidth',2,'MarkerSize',10)
+legend('exact','numerical')
+ylabel('U_x / U_{max}')
+xlabel('y/H')
+
+figure
+plot(outdata2(:,1),outdata(:,2)-outdata2(:,2),'k.')
+xlabel('y/H')
+ylabel('numeric - actual')
+
+
+%% plots for part 2
+figure
+plot(outdata2_1(:,1),outdata_1(:,2)-outdata2_1(:,2),'k.',outdata2(:,1),outdata(:,2)-outdata2(:,2),'r.')
+legend('new grid','original grid')
+xlabel('y/H')
+ylabel('numeric - actual')
+
+%% plots for part 3
+figure
+plot(outdata2(:,1),outdata(:,2)-outdata2(:,2),'r.',outdata2_1(:,1),outdata_1(:,2)-outdata2_1(:,2),'k.', ... 
+    outdata2_2(:,1),outdata_2(:,2)-outdata2_2(:,2),'g.',...
+    outdata2_5(:,1),outdata_5(:,2)-outdata2_5(:,2),'bo',outdata2_10(:,1),outdata_10(:,2)-outdata2_10(:,2),'m*','MarkerSize',10)
+legend('original grid','new grid','1/2 number of nodes','1/5 number of nodes','1/10 number of nodes')
+xlabel('y/H')
+ylabel('numeric - actual')
+
+figure
+semilogy(Res(:,1),Res(:,2),'r',Res_1(:,1),Res_1(:,2),'k', ... 
+    Res_2(:,1),Res_2(:,2),'g',...
+    Res_5(:,1),Res_5(:,2),'b',Res_10(:,1),Res_10(:,2),'m')
+legend('original grid','new grid','1/2 number of nodes','1/5 number of nodes','1/10 number of nodes')
+xlabel('step')
+ylabel('residual')
+
+
+%% Plots for 
